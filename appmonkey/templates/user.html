@@ -1,0 +1,50 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+	<h1>Monkey: {{monkey.username}}'s Profile</h1> 
+
+
+<p>
+  {{monkey.username}}'s name: <b>{{profile.name}}</b>
+</p>
+<p>
+  {{monkey.username}}'s email: <b>{{profile.email}}</b>
+</p>
+<p>
+  {{monkey.username}}'s age : <b>{{profile.age}}</b>
+</p>
+<p></p>
+{% if monkey.mid == g.user.mid %}<p><a href="{{url_for('edit')}}">Edit Your Profile</a>&nbsp&nbsp&nbsp&nbsp<a href="{{url_for('deactivate')}}">Deactivate</a></p>
+{% elif not g.user.is_friend(monkey) %}
+    <a href="{{url_for('befriend', uname = monkey.username)}}">Add Friend</a>
+{% else %}
+    <a href="{{url_for('unfriend', uname = monkey.username)}}">Un_Friend</a>
+{% if g.user.besty_with(monkey) %}
+	&nbsp&nbsp&nbsp&nbsp<a href="{{url_for('un_bestfriend', uname = monkey.username)}}">Unbestfriend</a>
+{% else %}
+	&nbsp&nbsp&nbsp&nbsp<a href="{{url_for('make_besty', uname = monkey.username)}}">Make_BFF</a>
+{% endif %}
+{% endif %}
+<p></p>
+<div class="center-block">
+	<form class="form-horizontal" action="" method="post" name="search">
+    {{form.hidden_tag()}}
+	<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="search">Search a monkey(by name or username):</label>
+				<div class="controls">
+				{{ form.search(maxlength = 64, class = "span4") }}
+				{% for error in form.errors.search %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				
+                <input class="btn btn-primary" type="submit" value="Search">
+				
+			</div>
+	</div>
+	
+
+</form>
+</div>
+{% endblock %}

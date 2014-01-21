@@ -1,0 +1,70 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Sign up</h1>
+<div class="well">
+<form class="form-horizontal" action="" method="post" name="signup">
+    {{form.hidden_tag()}}
+	<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="name">Your Name:</label>
+				<div class="controls">
+				{{ form.name(maxlength = 64, class = "span4") }}
+				{% for error in form.errors.name %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				</div>
+		</div>
+		<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="email">Your Email:</label>
+				<div class="controls">
+				{{ form.email(maxlength = 64, class = "span4") }}
+				{% for error in form.errors.email %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				</div>
+		</div>
+		<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="dob">Your DOB(yyyy-mm-dd):</label>
+				<div class="controls">
+				{{ form.dob(maxlength = 64, class = "span4") }}
+				{% for error in form.errors.dob %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				</div>
+		</div>
+		<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="username">Your Username:</label>
+				<div class="controls">
+				{{ form.username(maxlength = 64, class = "span4") }}
+				{% for error in form.errors.username %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				</div>
+		</div>
+		<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="password">Your Password:</label>
+				<div class="controls">
+				{{ form.password }}
+				{% for error in form.errors.password %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				</div>
+		</div>
+		<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="confirm">Repeat Password:</label>
+				<div class="controls">
+				{{ form.confirm }}
+				{% for error in form.errors.confirm %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				</div>
+		</div>
+		<div class="control-group">
+             <div class="controls">
+                <input class="btn btn-primary" type="submit" value="Sign Up">
+             </div>
+        </div>
+</form>
+</div>
+{% endblock %}

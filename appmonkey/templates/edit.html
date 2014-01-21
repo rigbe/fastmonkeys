@@ -1,0 +1,44 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Edit Your Profile</h1>
+<div class="well">
+	<form class="form-horizontal" action="" method="post" name="edit">
+    {{form.hidden_tag()}}
+		<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="name">Your Name:</label>
+				<div class="controls">
+				{{ form.name(maxlength = 64, class = "span4") }}
+				{% for error in form.errors.name %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				</div>
+		</div>
+		<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="email">Your Email:</label>
+				<div class="controls">
+				{{ form.email(maxlength = 64, class = "span4") }}
+				{% for error in form.errors.email %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				</div>
+		</div>
+		<div class="control-group{% if form.errors.post %} error{% endif %}">
+			<label class="control-label" for="dob">Your DOB(yyyy-mm-dd):</label>
+				<div class="controls">
+				{{ form.dob(maxlength = 64, class = "span4") }}
+				{% for error in form.errors.dob %}
+					<span class="help-inline">[{{error}}]</span><br>
+				{% endfor %}
+				</div>
+		</div>
+		<div class="control-group">
+             <div class="controls">
+                <input class="btn btn-primary" type="submit" value="Save Changes">
+             </div>
+        </div>
+	</form>
+</div>
+				
+{% endblock %}

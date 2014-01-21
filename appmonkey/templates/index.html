@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<p><h1>Hi, {{user.username}}!</h1>You have {{user.count_friends()}} Friends.{% if user.has_besty() %} Your best friend is {{user.besty()}} {% endif %}
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').dataTable( {
+        "aaSorting": [[ 1, "desc" ]]
+    } );
+} );
+
+</script>
+{% if user.count_friends() > 0 %}
+<table id="example" class="dataTable" border=1>
+<thead>
+<tr>
+        <th>Friend</th>
+		<th>BFF</th>
+		<th>Friend Count</th>
+</tr>
+</thead>
+
+           
+<tbody>	
+{% for friend in friends %} 	
+		<tr>
+		
+
+			<td>{{friend.name}}</td>
+			<td>{{friend.besty()}}</td>
+			<td>{{friend.count_friends()}}</td>
+		
+		</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+{% endblock %}
+
+
